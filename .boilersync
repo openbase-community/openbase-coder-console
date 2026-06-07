@@ -1,0 +1,9 @@
+{
+  "template": "react-app",
+  "name_snake": "openbase_coder_console",
+  "name_pretty": "Openbase Coder Console",
+  "variables": {
+    "github_user": "openbase-community",
+    "marketing_description": "React frontend console for Openbase Coder"
+  }
+}
