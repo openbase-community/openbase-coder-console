@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { groupReportItems } from "@/lib/reportGroups";
+import { groupReportItems, groupReportItemsByDay, relativeReportDayLabel } from "@/lib/reportGroups";
 import type { ReportsFile } from "@/types/session";
 
 const file = (
@@ -72,5 +72,47 @@ describe("groupReportItems", () => {
 
     expect(nodes).toHaveLength(2);
     expect(nodes.map((node) => node.key)).toEqual(["/two:run", "/one:run"]);
+  });
+});
+
+describe("report date grouping", () => {
+  it("labels report days with the same Today, Yesterday, and older date semantics as threads", () => {
+    const now = new Date(2026, 5, 30, 12);
+    const today = new Date(2026, 5, 30, 9).getTime() / 1000;
+    const yesterday = new Date(2026, 5, 29, 18).getTime() / 1000;
+    const older = new Date(2026, 5, 20, 15).getTime() / 1000;
+
+    expect(relativeReportDayLabel(today, now)).toBe("Today");
+    expect(relativeReportDayLabel(yesterday, now)).toBe("Yesterday");
+    expect(relativeReportDayLabel(older, now)).toBe("Saturday, Jun 20");
+  });
+
+  it("groups report nodes by local produced date before folder grouping", () => {
+    const now = new Date(2026, 5, 30, 12);
+    const sections = groupReportItemsByDay(
+      [
+        file("today.md", new Date(2026, 5, 30, 9).getTime() / 1000),
+        file("run/a.md", new Date(2026, 5, 29, 18).getTime() / 1000),
+        file("run/b.md", new Date(2026, 5, 29, 17).getTime() / 1000),
+      ],
+      (item) => item,
+      () => "",
+      now,
+    );
+
+    expect(sections.map((section) => section.label)).toEqual([
+      "Today",
+      "Yesterday",
+    ]);
+    expect(sections[0].nodes).toMatchObject([
+      { type: "file", item: { path: "today.md" } },
+    ]);
+    expect(sections[1].nodes).toMatchObject([
+      {
+        type: "group",
+        name: "run",
+        items: [{ path: "run/a.md" }, { path: "run/b.md" }],
+      },
+    ]);
   });
 });
