@@ -14,8 +14,6 @@ dist-ssr
 *.tsbuildinfo
 .ruff_cache/
 .weekend-commit-rewriter.git/
-playwright-report
-test-results
 
 # Editor directories and files
 .idea
@@ -28,6 +26,3 @@ test-results
 
 
 .claude/settings.local.json
-
-# Openbase plugin generated files
-src/generated
