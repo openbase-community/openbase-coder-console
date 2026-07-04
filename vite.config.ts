@@ -42,7 +42,6 @@ export default defineConfig(({ mode }) => ({
   base: useCdnBase ? `https://cdn.openbase.app/${s3Name}/` : "/",
   plugins: [react()],
   resolve: {
-    preserveSymlinks: true,
     alias: {
       "@": sharedSrc,
       "@openbase/coder-react": sharedSrc,
