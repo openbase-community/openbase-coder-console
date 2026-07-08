@@ -39,7 +39,10 @@ export default defineConfig(({ mode }) => ({
       ],
     },
   },
-  base: useCdnBase ? `https://cdn.openbase.app/${s3Name}/` : "/",
+  // Relative base so the built console works both at the server root and when
+  // served behind a reverse-proxy subpath (Openbase Cloud headless workspaces
+  // inject a <base href> that these relative asset URLs resolve against).
+  base: useCdnBase ? `https://cdn.openbase.app/${s3Name}/` : "./",
   plugins: [react()],
   resolve: {
     alias: {

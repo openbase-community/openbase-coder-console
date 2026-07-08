@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!--
+      Assets are built with a relative base (see vite.config.ts) so the console
+      also works behind a reverse-proxy subpath. This base anchors them at the
+      server root for normal installs (deep links included). When proxied,
+      Openbase Cloud injects its own <base> before this one, and the first
+      <base> in the document wins.
+    -->
+    <base href="/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Openbase Coder Console</title>
