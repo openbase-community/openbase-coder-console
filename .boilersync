@@ -2,13 +2,13 @@
   "template": "https://github.com/openbase-community/templates.git#react-app",
   "template_commit": "00040c2dc82463468f80a34f5dcfd387c125fe4f",
   "name_snake": "openbase_coder_console",
-  "name_pretty": "Openbase Coder Console",
+  "name_pretty": "Openbase Console",
   "variables": {
     "api_client_package_name": "@openbase/coder-api-client",
     "auth_client_package_name": "openbase-auth-client",
     "cdn_base_url": "https://cdn.openbase.app/openbase-coder-console/",
     "github_user": "openbase-community",
-    "marketing_description": "React frontend console for Openbase Coder",
+    "marketing_description": "React frontend console for Openbase",
     "ui_package_name": "openbase-ui",
     "web_package_name": "@openbase/coder-console"
   }
