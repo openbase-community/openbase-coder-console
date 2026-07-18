@@ -24,7 +24,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["../coder-react/src/*"],
-      "@openbase/coder-react/*": ["../coder-react/src/*"]
+      "@openbase/coder-react/*": ["../coder-react/src/*"],
+      "boilersync-react": ["../boilersync-react/src/index.ts"],
+      "multi-react": ["../multi-react/src/index.ts"]
     }
   },
   "include": ["src", "../coder-react/src"]
