@@ -9,7 +9,7 @@ serves the app with Vite during local development.
 Most reusable interface code lives in the sibling
 [`coder-react`](https://github.com/openbase-community/openbase-coder-react)
 package. The local backend is provided by the
-[`openbase-coder`](https://github.com/openbase-community/openbase-coder) CLI.
+[`openbase-coder`](https://github.com/openbase-community/openbase) CLI.
 
 ## Repository Layout
 
