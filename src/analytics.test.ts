@@ -28,12 +28,12 @@ describe("console product analytics", () => {
     expect(isAllowedAnalyticsEvent("private_prompt_copied")).toBe(false);
   });
 
-  it("requires opt-in and honors privacy and build kill switches", () => {
-    expect(productAnalyticsCollectionEnabled(true, null, false)).toBe(false);
+  it("defaults on and honors opt-out, privacy, and build kill switches", () => {
+    expect(productAnalyticsCollectionEnabled(true, null, false)).toBe(true);
     expect(productAnalyticsCollectionEnabled(true, "1", false)).toBe(true);
     expect(productAnalyticsCollectionEnabled(true, "0", false)).toBe(false);
-    expect(productAnalyticsCollectionEnabled(false, "1", false)).toBe(false);
-    expect(productAnalyticsCollectionEnabled(true, "1", true)).toBe(false);
+    expect(productAnalyticsCollectionEnabled(false, null, false)).toBe(false);
+    expect(productAnalyticsCollectionEnabled(true, null, true)).toBe(false);
   });
 
   it("removes the anonymous device id on opt-out", () => {

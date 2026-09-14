@@ -88,10 +88,11 @@ VITE_PRODUCT_ANALYTICS_ENABLED
 VITE_USE_CDN
 ```
 
-Product analytics is off until the user opts in. The client sends only the
-allowlisted events and properties in `src/analytics.ts`; it does not enable
-autocapture or session replay. `VITE_PRODUCT_ANALYTICS_ENABLED=0` is a build
-kill switch.
+Product analytics is on by default and can be turned off in Account settings.
+The client honors browser Do Not Track and Global Privacy Control signals and
+sends only the allowlisted events and properties in `src/analytics.ts`; it does
+not enable autocapture or session replay. `VITE_PRODUCT_ANALYTICS_ENABLED=0` is
+a build kill switch.
 
 `VITE_USE_CDN=true` changes the production asset base to the configured
 Openbase CDN path in `vite.config.ts`.

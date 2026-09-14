@@ -80,7 +80,7 @@ export function productAnalyticsCollectionEnabled(
   storedPreference: string | null,
   doNotTrack: boolean,
 ): boolean {
-  return buildEnabled && storedPreference === "1" && !doNotTrack;
+  return buildEnabled && storedPreference !== "0" && !doNotTrack;
 }
 
 export function browserDoNotTrackEnabled(): boolean {
@@ -93,15 +93,19 @@ export function browserDoNotTrackEnabled(): boolean {
 
 export function isProductAnalyticsEnabled(): boolean {
   const buildEnabled = import.meta.env.VITE_PRODUCT_ANALYTICS_ENABLED !== "0";
+  let storedPreference: string | null = null;
   try {
-    return productAnalyticsCollectionEnabled(
-      buildEnabled,
-      window.localStorage.getItem(PRODUCT_ANALYTICS_ENABLED_KEY),
-      browserDoNotTrackEnabled(),
+    storedPreference = window.localStorage.getItem(
+      PRODUCT_ANALYTICS_ENABLED_KEY,
     );
   } catch {
-    return false;
+    // An unavailable storage backend behaves like an unset preference.
   }
+  return productAnalyticsCollectionEnabled(
+    buildEnabled,
+    storedPreference,
+    browserDoNotTrackEnabled(),
+  );
 }
 
 export function setProductAnalyticsEnabled(enabled: boolean): void {
