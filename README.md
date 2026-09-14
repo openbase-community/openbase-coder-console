@@ -82,9 +82,16 @@ private keys, service tokens, cookies, or local backend credentials.
 Supported public settings include:
 
 ```text
-VITE_GA_TRACKING_ID
+VITE_AMPLITUDE_API_KEY
+VITE_AMPLITUDE_ENDPOINT
+VITE_PRODUCT_ANALYTICS_ENABLED
 VITE_USE_CDN
 ```
+
+Product analytics is off until the user opts in. The client sends only the
+allowlisted events and properties in `src/analytics.ts`; it does not enable
+autocapture or session replay. `VITE_PRODUCT_ANALYTICS_ENABLED=0` is a build
+kill switch.
 
 `VITE_USE_CDN=true` changes the production asset base to the configured
 Openbase CDN path in `vite.config.ts`.

@@ -19,32 +19,6 @@
     <meta property="og:description" content="React frontend console for Openbase Coder" />
     <meta property="og:type" content="website" />
 
-    <!-- Google tag (gtag.js) - place this after the meta tags but before any other scripts -->
-    <script>
-      (function () {
-        const gaTrackingId = "%VITE_GA_TRACKING_ID%";
-        if (
-          gaTrackingId &&
-          gaTrackingId !== "" &&
-          !gaTrackingId.includes("VITE_GA_TRACKING_ID")
-        ) {
-          // Load gtag script
-          const script = document.createElement("script");
-          script.async = true;
-          script.src = `https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`;
-          document.head.appendChild(script);
-
-          // Initialize gtag
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", gaTrackingId);
-        }
-      })();
-    </script>
-
     <link rel="icon" href="/images/favicon.png" type="image/png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
