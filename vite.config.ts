@@ -1,3 +1,4 @@
+import { createRequire } from "node:module";
 import react from "@vitejs/plugin-react-swc";
 import { existsSync } from "fs";
 import path from "path";
@@ -5,6 +6,9 @@ import { defineConfig } from "vite";
 
 const s3Name = "openbase-coder-console";
 const useCdnBase = process.env.VITE_USE_CDN === "true";
+
+const require = createRequire(import.meta.url);
+const { provenancePlugin } = require("../coder-react/build/runtime-provenance.cjs");
 
 const sharedSrc = path.resolve(
   __dirname,
@@ -43,7 +47,7 @@ export default defineConfig(({ mode }) => ({
   // served behind a reverse-proxy subpath (Openbase Cloud headless workspaces
   // inject a <base href> that these relative asset URLs resolve against).
   base: useCdnBase ? `https://cdn.openbase.app/${s3Name}/` : "./",
-  plugins: [react()],
+  plugins: [react(), provenancePlugin(path.resolve(__dirname, ".."), "console")],
   resolve: {
     alias: {
       "@": sharedSrc,
