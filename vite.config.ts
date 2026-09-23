@@ -8,7 +8,7 @@ const s3Name = "openbase-coder-console";
 const useCdnBase = process.env.VITE_USE_CDN === "true";
 
 const require = createRequire(import.meta.url);
-const { provenancePlugin } = require("../coder-react/build/runtime-provenance.cjs");
+const { provenancePlugin } = require("../coder-react/scripts/runtime-provenance.cjs");
 
 const sharedSrc = path.resolve(
   __dirname,
